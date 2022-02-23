@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path')
+const path = require('path');
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -17,11 +17,11 @@ const createWindow = () => {
       createWindow();
 
       app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow()
-      })
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+      });
   });
 
   // dont close app, if os is macOs
   app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit()
-  })
+    if (process.platform !== 'darwin') app.quit();
+  });
