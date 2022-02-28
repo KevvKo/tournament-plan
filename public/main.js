@@ -3,7 +3,7 @@ const path = require('path');
 const isDev = require("electron-is-dev");
 
 const createWindow = () => {
-    const win = new BrowserWindow({
+    const window = new BrowserWindow({
       width: 800,
       height: 600,
       webPreferences: {
@@ -11,8 +11,13 @@ const createWindow = () => {
       }
     });
   
-    // win.loadFile('./public/index.html');
-    win.loadURL(
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+      pathname: path.join(__dirname, '/../build/index.html'),
+      protocol: 'file:',
+      slashes: true
+  });    
+  
+    window.loadURL(
       isDev
         ? "http://localhost:3000"
         : `file://${path.join(__dirname, "../build/index.html")}`
@@ -20,7 +25,7 @@ const createWindow = () => {
   
     // Open the DevTools.
     if (isDev) {
-      win.webContents.openDevTools({ mode: "detach" });
+      window.webContents.openDevTools({ mode: "detach" });
     }
   };
 
