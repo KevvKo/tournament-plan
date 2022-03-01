@@ -15,13 +15,9 @@ const createWindow = () => {
       pathname: path.join(__dirname, '/../build/index.html'),
       protocol: 'file:',
       slashes: true
-  });    
+    });    
   
-    window.loadURL(
-      isDev
-        ? "http://localhost:3000"
-        : `file://${path.join(__dirname, "../build/index.html")}`
-    );
+    window.loadURL( startUrl );
   
     // Open the DevTools.
     if (isDev) {
