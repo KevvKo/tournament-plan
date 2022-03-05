@@ -1,10 +1,14 @@
 import './App.css';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+
+// Components
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TournamentPlanView from './views/tournamentPlan/tournamentPlanView';
+import ParticipantsView from './views/participants/participantsView';
 
 function App() {
   const [value, setValue] = React.useState(0);
@@ -17,14 +21,15 @@ function App() {
         <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Gruppen" {...a11yProps(0)} />
+          <Tab label="Teilnehmer" {...a11yProps(0)} />
           <Tab label="Turnierplan" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        
+        <ParticipantsView />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <TournamentPlanView />
       </TabPanel>
     </Box>
     </div>
