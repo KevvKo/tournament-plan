@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import ParticiantItem from "../../components/ParticipantItem";
+import SnackbarAction from "../../components/SnackbarAction";
 
 const ParticipantsView = () => {
 
@@ -77,6 +78,7 @@ const ParticipantsView = () => {
                 autoHideDuration={6000}
                 onClose={handleClose}
                 message="Teilnehmer entfernt"
+                action={ <SnackbarAction callback={setOpen} />}
             />
         </Box>
     )

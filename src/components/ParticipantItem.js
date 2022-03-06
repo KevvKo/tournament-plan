@@ -19,7 +19,7 @@ const ParticiantItem = (props) => {
 
     return (
         <Grid item key={id} sx={{ display: 'flex'}} alignItems='center'>
-            <Typography component='span'>
+            <Typography component='span' >
                 { participant }
             </Typography>
             <Button 
