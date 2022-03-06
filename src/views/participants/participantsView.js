@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
 import Snackbar from '@mui/material/Snackbar';
+import ParticiantItem from "../../components/ParticipantItem";
 
 const ParticipantsView = () => {
 
@@ -40,37 +41,31 @@ const ParticipantsView = () => {
 
     return( 
         <Box>
-            <Grid container spacing={3}>
-                <ParticipantContext.Consumer>
-                    { ({ participants, setParticipants }) => (
-                        participants.map((e, i) => {
-
-                            const handleClickRemove = (i) => {
-                                
-                                const update = participants.filter(( e, j) =>  i !== j )
-                                setParticipants(update)
-                                setOpen(true);
-                            }
-
-                            return (
-                                <Grid item xs={12} key={i}>
-                                    <Typography component='span'>
-                                        { e }
-                                    </Typography>
-                                    <Button variant='contained' onClick={ () => { handleClickRemove(i) }}>
-                                        Entfernen
-                                    </Button>
-                                </Grid>
-                            )
-                        })
-                    )}
-                </ParticipantContext.Consumer>
+            <Grid container spacing={6}>
+                <Grid item xs={12}>
+                    <Grid container spacing={4}>
+                        <ParticipantContext.Consumer>
+                            { ({ participants }) => (
+                                participants.map((e, i) => {
+                                return <ParticiantItem participant={ e } id={ i } callback={setOpen} />
+                                })
+                            )}
+                        </ParticipantContext.Consumer>
+                    </Grid>
+                </Grid>
                 <Grid item xs={12} sx={{display: 'flex', alignItems: 'center'}}>
                     <TextField 
                         id="outlined-basic" 
-                        label="Vereinsname" 
+                        label="Vorname" 
                         variant="outlined" 
-                        sx={{marginRight: '25px'}}
+                        sx={{marginRight: '15px'}}
+                        onChange={ handleChange }    
+                    />
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Nachname" 
+                        variant="outlined" 
+                        sx={{marginRight: '15px'}}
                         onChange={ handleChange }    
                     />
                     <Button variant='contained' sx={{height: '40px'}} onClick={ handleClickAddParticipant }>

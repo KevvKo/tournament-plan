@@ -1,6 +1,4 @@
 import React from 'react';
-import './groupCard.css';
-
 // Components
 import { Box } from '@mui/system';
 import Card from '@mui/material/Card';

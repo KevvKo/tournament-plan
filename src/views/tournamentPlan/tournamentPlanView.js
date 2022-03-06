@@ -2,7 +2,7 @@ import React from "react";
 import './tournamentPlanView.css';
 // Components
 import Box from '@mui/material/Box';
-import GroupCard from "../../components/groupCard/groupCard";
+import GroupCard from "../../components/groupCard";
 
 const TournamentPlanView = () => {
     
