@@ -18,11 +18,15 @@ const ParticiantItem = (props) => {
     }
 
     return (
-        <Grid item xs={12} key={IDBTransaction}>
+        <Grid item key={id} sx={{ display: 'flex'}} alignItems='center'>
             <Typography component='span'>
                 { participant }
             </Typography>
-            <Button variant='contained' onClick={ () => { handleClick(id) }}>
+            <Button 
+                variant='contained' 
+                onClick={ () => { handleClick(id) }}
+                sx={{marginLeft: 'auto'}}
+            >
                 Entfernen
             </Button>
         </Grid>
