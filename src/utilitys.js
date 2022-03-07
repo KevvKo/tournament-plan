@@ -12,6 +12,8 @@ module.exports = {
                 group = [];
             }
         });
+
+        tournamentGroups.push(group)
         return tournamentGroups;
     }
 }

@@ -95,7 +95,6 @@ function App() {
         'Eisenhüttenstädter Räuber',
         'Berliner Kojoten',
         'Jenenser Flaschen',
-        'Erfurter Assis'
     ]
   )
   
