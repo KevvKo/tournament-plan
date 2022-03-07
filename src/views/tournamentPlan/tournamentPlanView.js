@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import './tournamentPlanView.css';
 // Components
 import Box from '@mui/material/Box';
@@ -7,20 +7,35 @@ import GroupCard from "../../components/groupCard";
 import ParticipantContext from "../../context/ParticipantContext";
 import { Typography } from "@mui/material";
 import CreatePlan from "../../components/CreatePlan";
+// General
+import { createGroups } from "../../utilitys";
 
 const TournamentPlanView = () => {
     
     const { participants } = useContext(ParticipantContext);
     const [ planCreated, setPlanCreated ] = useState(false);
-    
-    // const groupCards = groups.map((e, i) => {
-    //     return <GroupCard group={e} key={i} groupId={i}/>
-    // })
+    const [ groups, setGroups ] = useState([]);
+
+    useEffect(() => {
+
+        if(planCreated){
+            const assignment = createGroups(participants)
+            setGroups( assignment )
+        };
+
+    }, [planCreated]);
 
     if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
 
+    const groupCards = groups.map((e, i) => {
+        console.log(e)
+        return <GroupCard group={e} key={i} groupId={i+1}/>
+    })
+
     return (
-        <Box></Box>
+        <Box>
+            { groupCards }
+        </Box>
     )
     
 }
