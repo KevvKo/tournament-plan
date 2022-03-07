@@ -6,23 +6,28 @@ import { Button } from "@mui/material";
 
 const SnackbarAction = (props) => {
 
-    const { callback } = props;
+    const { callback, setOpen } = props;
 
 
     const handleClose = () => {
-        callback(false)
+        setOpen(false)
+    }
+
+    const handleUndo = () => {
+      callback()
+      setOpen(false)
     }
 
     return (
         <React.Fragment>
-          <Button size="small" onClick={handleClose}>
+          <Button size="small" onClick={ handleUndo }>
             UNDO
           </Button>
           <IconButton
             size="small"
             aria-label="close"
             color="inherit"
-            onClick={handleClose}
+            onClick={ handleClose }
           >
             <CloseIcon fontSize="small" />
           </IconButton>

@@ -13,6 +13,7 @@ import SnackbarAction from "../../components/SnackbarAction";
 const ParticipantsView = () => {
 
     const { participants, setParticipants } = useContext(ParticipantContext);
+    const [ removedParticipant, setRemovedParticipant ] = useState('')
     const [ inputValue, setInputValue ] = useState('');
     const [ open, setOpen ] = useState(false);
 
@@ -25,6 +26,16 @@ const ParticipantsView = () => {
             ])
         }
     }   
+
+    const handleUndo = () => {
+        participants.splice( 
+            removedParticipant.index, 
+            0, 
+            removedParticipant.name 
+        );
+
+        setParticipants(participants);
+    }
 
     const handleChange = (e) => {
         if( e.target.value ){
@@ -47,7 +58,12 @@ const ParticipantsView = () => {
                         <ParticipantContext.Consumer>
                             { ({ participants }) => (
                                 participants.map((e, i) => {
-                                return <ParticiantItem participant={ e } id={ i } callback={setOpen} />
+                                    return <ParticiantItem 
+                                                participant={ e } 
+                                                id={ i } 
+                                                setOpen={setOpen} 
+                                                setRemovedParticipant={ setRemovedParticipant }
+                                            />
                                 })
                             )}
                         </ParticipantContext.Consumer>
@@ -78,7 +94,12 @@ const ParticipantsView = () => {
                 autoHideDuration={6000}
                 onClose={handleClose}
                 message="Teilnehmer entfernt"
-                action={ <SnackbarAction callback={setOpen} />}
+                action={ 
+                    <SnackbarAction 
+                        callback={ handleUndo } 
+                        setOpen={ setOpen } 
+                    />
+                }
             />
         </Box>
     )

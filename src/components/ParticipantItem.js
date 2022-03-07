@@ -7,14 +7,18 @@ import Grid from '@mui/material/Grid';
 
 const ParticiantItem = (props) => {
     
-    const { participant, id, callback } = props;
+    const { participant, id, setOpen, setRemovedParticipant } = props;
     const {  participants, setParticipants } = useContext(ParticipantContext);
  
     const handleClick = (i) => {
                                 
         const update = participants.filter(( e, j) =>  i !== j )
-        setParticipants(update)
-        callback(true);
+        setRemovedParticipant({
+            name: participants[i],
+            index: i
+        })
+        setParticipants(update);
+        setOpen(true);
     }
 
     return (
