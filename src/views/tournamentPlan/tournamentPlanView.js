@@ -1,47 +1,28 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import './tournamentPlanView.css';
 // Components
 import Box from '@mui/material/Box';
+import { Button } from "@mui/material";
 import GroupCard from "../../components/groupCard";
+import ParticipantContext from "../../context/ParticipantContext";
+import { Typography } from "@mui/material";
+import CreatePlan from "../../components/CreatePlan";
 
 const TournamentPlanView = () => {
     
-    const groups = [
-        [
-            'kevin',
-            'duncan',
-            'dennis',
-            'lisa',  
-        ],
-        [
-            '221331',
-            'ddwdw',
-            'ggggg',
-            'hhhh',  
-        ],
-        [
-            'jjjj',
-            'kkkk',
-            'lllll',
-            'vvvvv',  
-        ],
-        [
-            'uuuuu',
-            'oooo',
-            'aaaaaa',
-            'xxxxxx',  
-        ],      
-    ]
+    const { participants } = useContext(ParticipantContext);
+    const [ planCreated, setPlanCreated ] = useState(false);
+    
+    // const groupCards = groups.map((e, i) => {
+    //     return <GroupCard group={e} key={i} groupId={i}/>
+    // })
 
-    const groupCards = groups.map((e, i) => {
-        return <GroupCard group={e} key={i} groupId={i}/>
-    })
+    if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
 
     return (
-        <Box component='div'>
-            { groupCards }
-        </Box>
+        <Box></Box>
     )
+    
 }
 
 export default TournamentPlanView;

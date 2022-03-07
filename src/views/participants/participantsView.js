@@ -100,6 +100,18 @@ const ParticipantsView = () => {
                         setOpen={ setOpen } 
                     />
                 }
+            />  
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="Teilnehmer entfernt"
+                action={ 
+                    <SnackbarAction 
+                        callback={ handleUndo } 
+                        setOpen={ setOpen } 
+                    />
+                }
             />
         </Box>
     )
