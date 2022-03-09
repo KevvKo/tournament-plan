@@ -26,7 +26,7 @@ const GroupCard = (props) => {
         <Card className='group-card' variant="outlined" sx={{ marginBottom: '70px', width: 'fit-content'}}>
             <CardContent>
                 <Typography gutterBottom variant="h6" align="left" >
-                    { `Group ${groupId}` }
+                    { `Gruppe ${groupId}` }
                 </Typography>
                 <Box sx={{display: 'inline'}}>
                     <Grid container>

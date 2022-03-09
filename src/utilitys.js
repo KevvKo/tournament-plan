@@ -13,7 +13,8 @@ module.exports = {
             }
         });
 
-        tournamentGroups.push(group)
+        if(group.length > 0) tournamentGroups.push(group);
+        
         return tournamentGroups;
     }
 }
