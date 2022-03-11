@@ -14,7 +14,9 @@ const GroupCard = (props) => {
 
     const handleChange = (e, stageIndex, groupIndex, ) => {
         const value = e.target.value;
-        
+        plan[stageIndex][groupIndex].score = value;
+     
+        setPlan(plan);
     };
 
     const participantList = group.map(( participant,i  ) => {

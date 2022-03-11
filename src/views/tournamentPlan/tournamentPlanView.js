@@ -40,7 +40,7 @@ const TournamentPlanView = () => {
                             plan: tournamentPlan,
                             setPlan: setTournamentPlan 
                         }}
-                        />
+                    />
                 )
             }
         })

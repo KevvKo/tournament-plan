@@ -1,4 +1,11 @@
 module.exports = {
+
+    /**
+     * @summary receiving a list of participants for the tournament and 
+     * assigning them into into stages and groups
+     * @param {*} participants 
+     * @returns {Array}
+     */
     createGroups: ( participants ) => {
         
         const tournamentPlan = [];
@@ -28,5 +35,15 @@ module.exports = {
         }
 
         return tournamentPlan;
+    },
+
+    /**
+     * @summary reveices a data structure, presenting the tournament, and
+     * assigning the candidates according to there scores to the new stage into groups
+     * @param {Array} tournamentData 
+     * @returns {Array} 
+     */
+    assignNewStage: ( group ) => {
+
     }
 }
