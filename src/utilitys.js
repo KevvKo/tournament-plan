@@ -43,6 +43,7 @@ module.exports = {
      * @param {Array} tournamentData 
      * @returns {Array} 
      */
+
     assignNewStage: ( tournamentData ) => {
         for(let i = 0, l = tournamentData.length; i < l; i++){
             const stage = tournamentData[i];
@@ -54,26 +55,42 @@ module.exports = {
                 const newStage = [];
 
                 // loop through the previous stage to assign the first and second placed winner
-                // cross for the next stage 
-                for( let j = 0, k = previousStage.length; j < k; j++){
+                // cross for the next stage for the second stage
+                if(i === 1){
+                    for( let j = 0, k = previousStage.length/2; j < k; j++){
+
+                        const group = previousStage[j];
+                        const oppositeGroup = previousStage[ k - j - 1]
+    
+                        // create the first stage cross assignment
+                        const firstPlaced = group.sort(( a,b ) => a.score < b.score )[0];
+                        const secondPlaced = oppositeGroup.sort(( a,b ) => a.score < b.score)[1]
+                        
+                        newStage.push([
+                            firstPlaced,
+                            secondPlaced
+                        ]) 
+                    }
+                }
+
+                // assigning the remaining candidates
+                for( let j = 0, k = previousStage.length/2; j < k; j++){
+
                     const group = previousStage[j];
                     const oppositeGroup = previousStage[ k - j - 1]
 
-                    const firstPlaced = group.sort(( a,b ) => a.score < b.score )[0];
-                    const secondPlaced = oppositeGroup.sort(( a,b ) => a.score < b.score)[1]
-                    
-                    newStage.push(
-                        [
-                            firstPlaced,
-                            secondPlaced
-                        ]
-                    ) 
-                }
+                    const candidate1 = group.sort(( a,b ) => a.score < b.score )[0];  
+                    const candidate2 = oppositeGroup.sort(( a,b ) => a.score < b.score )[0];
+
+                    newStage.push([
+                        candidate1,
+                        candidate2
+                    ]) 
+                };
 
                 tournamentData[i] = newStage;
                 return tournamentData;
             }
         }
-
-    },
+    }
 }

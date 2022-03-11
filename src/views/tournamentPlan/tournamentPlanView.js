@@ -38,18 +38,19 @@ const TournamentPlanView = () => {
             if(group.length >= 2){
 
                 return (
-                    <GroupCard 
-                        group={group} 
-                        key={i+j} 
-                        stageIndex={i} 
-                        groupIndex={j}
-                        tournamentData={{ 
-                            plan: tournamentPlan,
-                            setPlan: setTournamentPlan 
-                        }}
-                    />
-                )
-            }
+                    <Grid item>
+                        <GroupCard 
+                            group={group} 
+                            key={i+j} 
+                            stageIndex={i} 
+                            groupIndex={j}
+                            tournamentData={{ 
+                                plan: tournamentPlan,
+                                setPlan: setTournamentPlan 
+                            }}
+                        />
+                    </Grid>
+                )}
         });
 
         return (
@@ -66,11 +67,14 @@ const TournamentPlanView = () => {
                     <Button onClick={handleClick}>
                         Neue Phase
                     </Button>
+                    <Button onClick={handleClick}>
+                        Zurücksetzen
+                    </Button>
                 </Grid>
                 <Grid item></Grid>
-                { 
-                    groupCards
-                }
+                    <Grid container>
+                        { groupCards }
+                    </Grid>
             </Grid>
         </Box>
     )

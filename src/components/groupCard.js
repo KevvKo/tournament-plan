@@ -30,6 +30,7 @@ const GroupCard = (props) => {
                 <TextField 
                     type='number' 
                     size="small" 
+                    InputProps={{ inputProps: { min: 0, max: 3 } }}
                     defaultValue={participant.score} 
                     onChange={ (e) => { handleChange(e, stageIndex, groupIndex , i)}}
                     sx={{ width: '70px', marginLeft: 'auto'}}
