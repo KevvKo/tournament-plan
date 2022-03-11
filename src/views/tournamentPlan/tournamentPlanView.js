@@ -8,13 +8,18 @@ import ParticipantContext from "../../context/ParticipantContext";
 import { Grid } from "@mui/material";
 import CreatePlan from "../../components/CreatePlan";
 // General
-import { createGroups } from "../../utilitys";
+import { createGroups, assignNewStage } from "../../utilitys";
 
 const TournamentPlanView = () => {
     
     const { participants } = useContext(ParticipantContext);
     const [ planCreated, setPlanCreated ] = useState(false);
     const [ tournamentPlan, setTournamentPlan ] = useState([]);
+    
+    const handleClick = () => {
+        const update = assignNewStage(tournamentPlan)
+        setTournamentPlan([...update]);
+    };
 
     useEffect(() => {
 
@@ -28,14 +33,16 @@ const TournamentPlanView = () => {
     if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
 
     const groupCards = tournamentPlan.map(( stage, i) => {
+        const grouping = stage.map( ( group, j) => {
 
-        const grouping = stage.map( ( group, i) => {
             if(group.length >= 2){
+
                 return (
                     <GroupCard 
                         group={group} 
-                        key={i} 
+                        key={i+j} 
                         stageIndex={i} 
+                        groupIndex={j}
                         tournamentData={{ 
                             plan: tournamentPlan,
                             setPlan: setTournamentPlan 
@@ -43,7 +50,7 @@ const TournamentPlanView = () => {
                     />
                 )
             }
-        })
+        });
 
         return (
             <Grid item sx={{marginRight: '100px'}}>            
@@ -54,9 +61,16 @@ const TournamentPlanView = () => {
 
     return (
         <Box>
-            <Grid container>
+            <Grid container direction='column'>
+                <Grid item>
+                    <Button onClick={handleClick}>
+                        Neue Phase
+                    </Button>
+                </Grid>
                 <Grid item></Grid>
-                { groupCards }
+                { 
+                    groupCards
+                }
             </Grid>
         </Box>
     )

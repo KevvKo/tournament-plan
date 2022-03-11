@@ -20,18 +20,10 @@ function App() {
         'Berliner Kojoten',
         'Jenenser Flaschen',
         'Erfurter Assis',
-        'Eisenhüttenstädter Räuber',
-        'Berliner Kojoten',
-        'Jenenser Flaschen',
-        'Erfurter Assis',
-        'Eisenhüttenstädter Räuber',
-        'Berliner Kojoten',
-        'Jenenser Flaschen',
-        'Erfurter Assis',
-        'Eisenhüttenstädter Räuber',
-        'Berliner Kojoten',
-        'Jenenser Flaschen',
-        'Erfurter Assis',
+        'Kevin',
+        'Daniel',
+        'Rick',
+        'Morty'
     ]
   )
   

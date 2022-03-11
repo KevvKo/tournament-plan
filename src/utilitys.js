@@ -43,7 +43,37 @@ module.exports = {
      * @param {Array} tournamentData 
      * @returns {Array} 
      */
-    assignNewStage: ( group ) => {
+    assignNewStage: ( tournamentData ) => {
+        for(let i = 0, l = tournamentData.length; i < l; i++){
+            const stage = tournamentData[i];
 
-    }
+            // find the first stage from the tournament, where the first group hast
+            // no member. Refers this stage has no members currently
+            if(stage[0].length === 0 ){
+                const previousStage = tournamentData[i-1];
+                const newStage = [];
+
+                // loop through the previous stage to assign the first and second placed winner
+                // cross for the next stage 
+                for( let j = 0, k = previousStage.length; j < k; j++){
+                    const group = previousStage[j];
+                    const oppositeGroup = previousStage[ k - j - 1]
+
+                    const firstPlaced = group.sort(( a,b ) => a.score < b.score )[0];
+                    const secondPlaced = oppositeGroup.sort(( a,b ) => a.score < b.score)[1]
+                    
+                    newStage.push(
+                        [
+                            firstPlaced,
+                            secondPlaced
+                        ]
+                    ) 
+                }
+
+                tournamentData[i] = newStage;
+                return tournamentData;
+            }
+        }
+
+    },
 }
