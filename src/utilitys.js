@@ -6,7 +6,10 @@ module.exports = {
         let group = [];
 
         participants.forEach( participant => {
-            group.push(participant);
+            group.push({
+                name: participant, 
+                score: 0
+            });
 
             if( group.length === 4 ){
                 groupStage.push(group)

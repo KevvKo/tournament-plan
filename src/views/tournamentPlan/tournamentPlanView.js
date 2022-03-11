@@ -30,7 +30,19 @@ const TournamentPlanView = () => {
     const groupCards = tournamentPlan.map(( stage, i) => {
 
         const grouping = stage.map( ( group, i) => {
-            return <GroupCard group={group} key={i} groupId={i+1}/>
+            if(group.length >= 2){
+                return (
+                    <GroupCard 
+                        group={group} 
+                        key={i} 
+                        stageIndex={i} 
+                        tournamentData={{ 
+                            plan: tournamentPlan,
+                            setPlan: setTournamentPlan 
+                        }}
+                        />
+                )
+            }
         })
 
         return (
@@ -43,6 +55,7 @@ const TournamentPlanView = () => {
     return (
         <Box>
             <Grid container>
+                <Grid item></Grid>
                 { groupCards }
             </Grid>
         </Box>

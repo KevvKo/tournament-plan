@@ -9,15 +9,27 @@ import { TextField } from '@mui/material';
 
 const GroupCard = (props) => {
 
-    const { group, groupId } = props
-    
-    const participantList = group.map((e) => {
+    const { group, stageIndex, tournamentData} = props
+    const {plan, setPlan } = tournamentData;
+
+    const handleChange = (e, stageIndex, groupIndex, ) => {
+        const value = e.target.value;
+        
+    };
+
+    const participantList = group.map(( participant,i  ) => {
         return (
             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
                 <Typography align='left' component='span' variant="body2" sx={{marginRight: '15px'}}>
-                    {e}
+                    {participant.name}
                 </Typography>
-                <TextField type='number' size="small" defaultValue={0} sx={{ width: '70px', marginLeft: 'auto   '}}/>
+                <TextField 
+                    type='number' 
+                    size="small" 
+                    defaultValue={participant.score} 
+                    onChange={ (e) => { handleChange(e, stageIndex, i)}}
+                    sx={{ width: '70px', marginLeft: 'auto'}}
+                />
             </Grid>
         )
     })
@@ -25,9 +37,6 @@ const GroupCard = (props) => {
     return(
         <Card className='group-card' variant="outlined" sx={{ marginBottom: '70px', width: 'fit-content'}}>
             <CardContent>
-                <Typography gutterBottom variant="h6" align="left" >
-                    { `Gruppe ${groupId}` }
-                </Typography>
                 <Box sx={{display: 'inline'}}>
                     <Grid container>
                         <Grid item>
