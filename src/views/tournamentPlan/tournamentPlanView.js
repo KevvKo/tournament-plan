@@ -23,18 +23,24 @@ const TournamentPlanView = () => {
     };
 
     const handleClickReset = () => {
-        const assignment = createGroups(participants)
-        setTournamentPlan([...assignment])
+        setTournamentPlan([])
     };
 
     useEffect(() => {
-
         if(planCreated){
             const assignment = createGroups(participants)
             setTournamentPlan( assignment )
         };
 
     }, [planCreated, participants]);
+
+    useEffect(() => {
+        
+        if( planCreated && tournamentPlan.length === 0){
+            const assignment = createGroups(participants)
+            setTournamentPlan( assignment )
+        }
+    }, [participants, tournamentPlan, planCreated])
 
     if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
 
@@ -77,9 +83,11 @@ const TournamentPlanView = () => {
         <Box>
             <Grid container direction='column'>
                 <Grid item>
-                    <Button onClick={handleClickNew}>
-                        Neue Phase
-                    </Button>
+                    { tournamentPlan[ tournamentPlan.length - 1]?.length !== 1 &&
+                        <Button onClick={handleClickNew}>
+                            Neue Phase
+                        </Button>
+                    }
                     <Button onClick={handleClickReset} color="error">
                         Zurücksetzen
                     </Button>
