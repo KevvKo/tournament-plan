@@ -7,6 +7,7 @@ import GroupCard from "../../components/groupCard";
 import ParticipantContext from "../../context/ParticipantContext";
 import { Grid } from "@mui/material";
 import CreatePlan from "../../components/CreatePlan";
+import Typography from '@mui/material/Typography';
 // General
 import { createGroups, assignNewStage } from "../../utilitys";
 
@@ -33,15 +34,15 @@ const TournamentPlanView = () => {
             setTournamentPlan( assignment )
         };
 
-    }, [planCreated]);
+    }, [planCreated, participants]);
 
     if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
 
-    const groupCards = tournamentPlan.map(( stage, i) => {
-        const grouping = stage.map( ( group, j) => {
+    const stages = tournamentPlan.map(( stage, i) => {
+
+        const groupList = stage.map( ( group, j) => {
 
             if(group.length >= 2){
-
                 return (
                     <Grid item>
                         <GroupCard 
@@ -56,11 +57,18 @@ const TournamentPlanView = () => {
                         />
                     </Grid>
                 )}
+
+            return
         });
 
-        return (
-            <Grid item sx={{marginRight: '100px'}}>            
-                { grouping }
+         return (
+            <Grid item sx={{marginRight: '100px'}}>
+                    { stage[0]?.length > 0 &&
+                        <Typography variant='h5'>
+                            Phase {i + 1}
+                        </Typography>
+                    }
+                { groupList }
             </Grid>
         )
     })
@@ -72,13 +80,13 @@ const TournamentPlanView = () => {
                     <Button onClick={handleClickNew}>
                         Neue Phase
                     </Button>
-                    <Button onClick={handleClickReset}>
+                    <Button onClick={handleClickReset} color="error">
                         Zurücksetzen
                     </Button>
                 </Grid>
                 <Grid item></Grid>
                     <Grid container>
-                        { groupCards }
+                        { stages }
                     </Grid>
             </Grid>
         </Box>
