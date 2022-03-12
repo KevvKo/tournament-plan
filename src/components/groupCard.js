@@ -21,7 +21,7 @@ const GroupCard = (props) => {
         }     
     };
 
-    const participantList = group.map(( participant, i  ) => {
+    const GroupCardItemList = group.map(( participant, i  ) => {
         return (
             <GroupCardItem 
                 participant={ participant }
@@ -40,7 +40,7 @@ const GroupCard = (props) => {
                     <Grid container>
                         <Grid item sx={{width: '100%'}}>
                             <Grid container direction='column'>
-                                {participantList}
+                                {GroupCardItemList}
                             </Grid>
                         </Grid>
                     </Grid>

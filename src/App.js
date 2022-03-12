@@ -23,7 +23,11 @@ function App() {
         'Kevin',
         'Daniel',
         'Rick',
-        'Morty'
+        'Morty',
+        'Barney',
+        'Spencer',
+        'Tom',
+        'Duncan'
     ]
   )
   

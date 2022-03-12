@@ -19,6 +19,10 @@ const ParticipantsView = () => {
 
     const handleClickAddParticipant = () => {
 
+        if(participants.length === 80){
+            return
+        }
+
         if(inputValue){
             setParticipants([
                 ...participants,

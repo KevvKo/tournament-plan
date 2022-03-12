@@ -29,10 +29,11 @@ module.exports = {
         // push the first groupstage
         tournamentPlan.push(groupStage);
         
-        for(let i = groupStage.length; i >= 1; i=i/2){
-            const stage = Array(i).fill([])
-            tournamentPlan.push(stage);
-        }
+        // for(let i = groupStage.length; i >= 1; i=i/2){
+        //     console.log(i)
+        //     const stage = Array( Math.round(i)).fill([])
+        //     tournamentPlan.push(stage);
+        // }
 
         return tournamentPlan;
     },
@@ -45,45 +46,49 @@ module.exports = {
      */
 
     assignNewStage: ( tournamentData ) => {
-        for(let i = 0, l = tournamentData.length; i < l; i++){
-            const stage = tournamentData[i];
 
             // find the first stage from the tournament, where the first group hast
-            // no member. Refers this stage has no members currently
-            if(stage[0].length === 0 ){
-                const previousStage = tournamentData[i-1];
-                const newStage = [];
+            // no member. Refers this stage has no me   mbers currently
+            const stagesCount = tournamentData.length
+            const stage = tournamentData[ stagesCount - 1 ];
+            const newStage = [];
 
-                // loop through the previous stage to assign the first and second placed winner
-                // cross for the next stage for the second stage
-                if(i === 1){
-                    for( let j = 0, k = previousStage.length; j < k; j++){
+            // loop through the previous stage to assign the first and second placed winner
+            // cross for the next stage for the second stage
+            if( stagesCount === 1 ){
+                for( let j = 0, k = stage.length; j < k; j++){
 
-                        const group = [...previousStage[j]];
-                        const oppositeGroup = [...previousStage[ k - j - 1]]
-    
-                        // create the first stage cross assignment
-                        const firstPlaced = group.sort(( a,b ) => a.score < b.score )[0];
-                        const secondPlaced = oppositeGroup.sort(( a,b ) => a.score < b.score)[1]
+                    const group = [...stage[j]];
+                    const oppositeGroup = [...stage[ k - j - 1]]
 
-                        newStage.push([
-                            firstPlaced,
-                            secondPlaced
-                        ]) 
-                    }
+                    // create the first stage cross assignment
+                    const candidate1 = {...group.sort(( a,b ) => b.score - a.score )[0]};
+                    const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score)[1]}
+                    
+                    candidate1.score = 0;
+                    candidate2.score = 0;
 
-                    tournamentData[i] = newStage;
-                    return tournamentData;
-                } 
+                    newStage.push([
+                        candidate1,
+                        candidate2
+                    ]) 
+                }
 
-                // assigning the remaining candidates
-                for( let j = 0, k = previousStage.length; j < k/2; j++){
+                tournamentData.push(newStage);
+                return tournamentData;
+            } 
 
-                    const group = previousStage[j];
-                    const oppositeGroup = previousStage[ k - j - 1]
+            if( stage.length % 2 === 0){
+                // assigning the remaining candidates for a even count of groups
+                for( let j = 0, k = stage.length; j < k/2; j++){
+                    const group = [...stage[j]];
+                    const oppositeGroup = [...stage[ k - j - 1]];
 
-                    const candidate1 = group.sort(( a,b ) => a.score < b.score )[0];  
-                    const candidate2 = oppositeGroup.sort(( a,b ) => a.score < b.score )[0];
+                    const candidate1 = {...group.sort(( a,b ) => b.score - a.score)[0]};  
+                    const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
+            
+                    candidate1.score = 0;
+                    candidate2.score = 0;
 
                     newStage.push([
                         candidate1,
@@ -91,9 +96,34 @@ module.exports = {
                     ]) 
                 };
 
-                tournamentData[i] = newStage;
+                tournamentData.push(newStage);
                 return tournamentData;
             }
-        }
+
+            // assigning the remaining candidates if the count of group is odd
+            for( let j = 0, k = stage.length; j <= (k-1)/2; j++){   
+                console.log(stage)
+                const group = [...stage[j]];
+                const oppositeGroup = [...stage[ k - j - 1]];
+
+                if( j === (k-1)/2 ){
+                    newStage.push(group);
+                    continue
+                }
+                const candidate1 = {...group.sort(( a,b ) =>  b.score - a.score )[0]};  
+                const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
+    
+                candidate1.score = 0;
+                candidate2.score = 0;
+                
+                newStage.push([
+                    candidate1,
+                    candidate2
+                ]) 
+            };
+
+            tournamentData.push(newStage);
+            return tournamentData;
+        
     }
 }
