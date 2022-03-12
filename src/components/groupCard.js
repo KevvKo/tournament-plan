@@ -4,8 +4,7 @@ import { Box } from '@mui/system';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Grid } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
+import GroupCardItem from './GroupCardItem';
 
 const GroupCard = (props) => {
 
@@ -13,7 +12,9 @@ const GroupCard = (props) => {
     const {plan, setPlan } = tournamentData;
 
     const handleChange = (e, stageIndex, groupIndex, participantIndex ) => {   
+
         const value = parseInt(e.target.value);
+        
         if(plan[stageIndex][groupIndex]){
             plan[stageIndex][groupIndex][participantIndex].score = value;
             setPlan(...[plan]);
@@ -22,19 +23,13 @@ const GroupCard = (props) => {
 
     const participantList = group.map(( participant, i  ) => {
         return (
-            <Grid item sx={{display: 'flex', alignItems: 'center' }}>
-                <Typography align='left' component='span' variant="body2" sx={{marginRight: '15px'}}>
-                    {participant.name}
-                </Typography>
-                <TextField 
-                    type='number' 
-                    size="small" 
-                    InputProps={{ inputProps: { min: 0, max: 3 } }}
-                    defaultValue={0} 
-                    onChange={ (e) => { handleChange(e, stageIndex, groupIndex , i)}}
-                    sx={{ width: '70px', marginLeft: 'auto'}}
-                />
-            </Grid>
+            <GroupCardItem 
+                participant={ participant }
+                onChange={ handleChange}
+                stageIndex={ stageIndex }
+                groupIndex={ groupIndex }
+                participantIndex={ i }
+            />
         )
     })
 
