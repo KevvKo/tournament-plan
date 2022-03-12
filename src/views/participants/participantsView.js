@@ -9,6 +9,9 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import ParticiantItem from "../../components/ParticipantItem";
 import SnackbarAction from "../../components/SnackbarAction";
+import { Typography } from "@mui/material";
+import Badge from '@mui/material/Badge';
+import { positions } from "@mui/system";
 
 const ParticipantsView = () => {
 
@@ -117,6 +120,11 @@ const ParticipantsView = () => {
                     />
                 }
             />
+            <Badge color="primary" sx={{ position: 'fixed', right: '50px', bottom: '50px'}}>
+                <Typography variant="overline"> 
+                    Aktuelle Teilnehmeranzahl: {participants.length}
+                </Typography>
+            </Badge>
         </Box>
     )
 }

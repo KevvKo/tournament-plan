@@ -16,18 +16,19 @@ function App() {
   const [value, setValue] = React.useState(0);
   const [ participants, setParticipants ] = useState(
     [
-        'Eisenhüttenstädter Räuber',
-        'Berliner Kojoten',
-        'Jenenser Flaschen',
-        'Erfurter Assis',
-        'Kevin',
-        'Daniel',
-        'Rick',
-        'Morty',
-        'Barney',
-        'Spencer',
-        'Tom',
-        'Duncan'
+      'Eisenhüttenstädter Räuber',
+      'Berliner Kojoten',
+      'Jenenser Flaschen',
+      'Erfurter Assis',
+      'Kevin',
+      'Daniel',
+      'Rick',
+      'Morty',
+      'Barney',
+      'Spencer',
+      'Tom',
+      'Duncan',
+
     ]
   )
   
