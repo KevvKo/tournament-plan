@@ -57,24 +57,27 @@ module.exports = {
                 // loop through the previous stage to assign the first and second placed winner
                 // cross for the next stage for the second stage
                 if(i === 1){
-                    for( let j = 0, k = previousStage.length/2; j < k; j++){
+                    for( let j = 0, k = previousStage.length; j < k; j++){
 
-                        const group = previousStage[j];
-                        const oppositeGroup = previousStage[ k - j - 1]
+                        const group = [...previousStage[j]];
+                        const oppositeGroup = [...previousStage[ k - j - 1]]
     
                         // create the first stage cross assignment
                         const firstPlaced = group.sort(( a,b ) => a.score < b.score )[0];
                         const secondPlaced = oppositeGroup.sort(( a,b ) => a.score < b.score)[1]
-                        
+
                         newStage.push([
                             firstPlaced,
                             secondPlaced
                         ]) 
                     }
-                }
+
+                    tournamentData[i] = newStage;
+                    return tournamentData;
+                } 
 
                 // assigning the remaining candidates
-                for( let j = 0, k = previousStage.length/2; j < k; j++){
+                for( let j = 0, k = previousStage.length; j < k/2; j++){
 
                     const group = previousStage[j];
                     const oppositeGroup = previousStage[ k - j - 1]

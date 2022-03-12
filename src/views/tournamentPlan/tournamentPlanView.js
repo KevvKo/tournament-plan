@@ -16,9 +16,14 @@ const TournamentPlanView = () => {
     const [ planCreated, setPlanCreated ] = useState(false);
     const [ tournamentPlan, setTournamentPlan ] = useState([]);
     
-    const handleClick = () => {
-        const update = assignNewStage(tournamentPlan)
+    const handleClickNew = () => {
+        const update = assignNewStage([...tournamentPlan])
         setTournamentPlan([...update]);
+    };
+
+    const handleClickReset = () => {
+        const assignment = createGroups(participants)
+        setTournamentPlan([...assignment])
     };
 
     useEffect(() => {
@@ -64,10 +69,10 @@ const TournamentPlanView = () => {
         <Box>
             <Grid container direction='column'>
                 <Grid item>
-                    <Button onClick={handleClick}>
+                    <Button onClick={handleClickNew}>
                         Neue Phase
                     </Button>
-                    <Button onClick={handleClick}>
+                    <Button onClick={handleClickReset}>
                         Zurücksetzen
                     </Button>
                 </Grid>
