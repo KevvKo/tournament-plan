@@ -28,12 +28,6 @@ export const createGroups = ( participants ) => {
 
     // push the first groupstage
     tournamentPlan.push(groupStage);
-    
-    // for(let i = groupStage.length; i >= 1; i=i/2){
-    //     console.log(i)
-    //     const stage = Array( Math.round(i)).fill([])
-    //     tournamentPlan.push(stage);
-    // }
 
     return tournamentPlan;
 }
@@ -102,7 +96,6 @@ export const assignNewStage = ( tournamentData ) => {
 
         // assigning the remaining candidates if the count of group is odd
         for( let j = 0, k = stage.length; j <= (k-1)/2; j++){   
-            console.log(stage)
             const group = [...stage[j]];
             const oppositeGroup = [...stage[ k - j - 1]];
 

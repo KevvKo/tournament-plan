@@ -14,23 +14,7 @@ import ParticipantsView from './views/participants/participantsView';
 function App() {
 
   const [value, setValue] = React.useState(0);
-  const [ participants, setParticipants ] = useState(
-    [
-      'Eisenhüttenstädter Räuber',
-      'Berliner Kojoten',
-      'Jenenser Flaschen',
-      'Erfurter Assis',
-      'Kevin',
-      'Daniel',
-      'Rick',
-      'Morty',
-      'Barney',
-      'Spencer',
-      'Tom',
-      'Duncan',
-
-    ]
-  )
+  const [ participants, setParticipants ] = useState([])
   
   const defaultValues = {
     participants: participants,

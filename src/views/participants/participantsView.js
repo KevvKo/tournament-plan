@@ -17,7 +17,8 @@ const ParticipantsView = () => {
 
     const { participants, setParticipants } = useContext(ParticipantContext);
     const [ removedParticipant, setRemovedParticipant ] = useState('')
-    const [ inputValue, setInputValue ] = useState('');
+    const [ prename, setPrename ] = useState('');
+    const [ subname, setSubname ] = useState('');
     const [ open, setOpen ] = useState(false);
 
     const handleClickAddParticipant = () => {
@@ -26,10 +27,10 @@ const ParticipantsView = () => {
             return
         }
 
-        if(inputValue){
+        if(prename && subname ){
             setParticipants([
                 ...participants,
-                inputValue
+                prename + ' ' + subname
             ])
         }
     }   
@@ -44,9 +45,15 @@ const ParticipantsView = () => {
         setParticipants(participants);
     }
 
-    const handleChange = (e) => {
+    const handleChangePrename = (e) => {
         if( e.target.value ){
-            setInputValue(e.target.value);
+            setPrename(e.target.value);
+        }
+    };  
+
+    const handleChangeSubname = (e) => {
+        if( e.target.value ){
+            setSubname(e.target.value);
         }
     };  
 
@@ -62,6 +69,13 @@ const ParticipantsView = () => {
             <Grid container alignItems='flex-start'>
                 <Grid item xs={4}>
                     <Grid container spacing={4} direction='column'>
+                        { participants.length === 0 &&
+                            <Grid item>
+                                <Typography variant="overline">
+                                    Bisher sind keine Teilnehmer eingetragen.
+                                </Typography>
+                            </Grid>
+                        }
                         <ParticipantContext.Consumer>
                             { ({ participants }) => (
                                 participants.map((e, i) => {
@@ -82,14 +96,14 @@ const ParticipantsView = () => {
                         label="Vorname" 
                         variant="outlined" 
                         sx={{marginRight: '15px', marginLeft: 'auto'}}
-                        onChange={ handleChange }    
+                        onChange={ handleChangePrename }    
                     />
                     <TextField 
                         id="outlined-basic" 
                         label="Nachname" 
                         variant="outlined" 
                         sx={{marginRight: '15px'}}
-                        onChange={ handleChange }    
+                        onChange={ handleChangeSubname }    
                     />
                     <Button variant='contained' sx={{height: '40px', marginRight: '70px'}} onClick={ handleClickAddParticipant }>
                         Hinzufügen
