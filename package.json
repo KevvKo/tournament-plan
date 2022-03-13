@@ -38,7 +38,7 @@
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-build": "electron-builder",
+    "electron-build": "electron-builder -mwl",
     "release": "yarn react-build && electron-builder -mwl",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
@@ -64,30 +64,17 @@
   "build": {
     "appId": "Turnierplan",
     "files": ["build/**/*", "node_modules/**/*"],
-
     "directories": {
-
       "buildResources": "public"
-
-    },
-    "electronDownload": {
-      "cache": "/root/.cache/electron-builder/appimage/163456078 /root/.cache/electron-builder/appimage/appimage-12.0.1"
     },
     "mac": {
-
       "target": "dmg"
-
     },
     "win": {
-
       "target": "nsis"
-
     },
-
     "linux": {
-
       "target": "deb"
-
     }
   }
 }
