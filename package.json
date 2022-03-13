@@ -1,7 +1,8 @@
 {
   "name": "tournament-plan",
   "version": "0.1.0",
-  "main": "public/main.js",
+  "author": "Kevin Klein <kklein915@gmail.com>",
+  "main": "./public/electron.js",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -21,7 +22,7 @@
     "react-scripts": "5.0.0",
     "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
-  },
+  },  
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
@@ -38,7 +39,7 @@
     "react-eject": "react-scripts eject",
     "electron": "electron .",
     "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "release": "yarn react-build && electron-builder -mwl",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
@@ -62,6 +63,31 @@
   },
   "build": {
     "appId": "Turnierplan",
-    "extends": null
+    "files": ["build/**/*", "node_modules/**/*"],
+
+    "directories": {
+
+      "buildResources": "public"
+
+    },
+    "electronDownload": {
+      "cache": "/root/.cache/electron-builder/appimage/163456078 /root/.cache/electron-builder/appimage/appimage-12.0.1"
+    },
+    "mac": {
+
+      "target": "dmg"
+
+    },
+    "win": {
+
+      "target": "nsis"
+
+    },
+
+    "linux": {
+
+      "target": "deb"
+
+    }
   }
 }
