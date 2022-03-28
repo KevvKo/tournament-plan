@@ -32,6 +32,8 @@ const ParticipantsView = () => {
                 ...participants,
                 prename + ' ' + subname
             ])
+            setPrename('');
+            setSubname('');
         }
     }   
 
@@ -96,6 +98,7 @@ const ParticipantsView = () => {
                         label="Vorname" 
                         variant="outlined" 
                         sx={{marginRight: '15px', marginLeft: 'auto'}}
+                        value={ prename }
                         onChange={ handleChangePrename }    
                     />
                     <TextField 
@@ -103,6 +106,7 @@ const ParticipantsView = () => {
                         label="Nachname" 
                         variant="outlined" 
                         sx={{marginRight: '15px'}}
+                        value={ subname }
                         onChange={ handleChangeSubname }    
                     />
                     <Button variant='contained' sx={{height: '40px', marginRight: '70px'}} onClick={ handleClickAddParticipant }>

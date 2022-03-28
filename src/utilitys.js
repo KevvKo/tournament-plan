@@ -41,71 +41,46 @@ export const createGroups = ( participants ) => {
 
 export const assignNewStage = ( tournamentData ) => {
 
-        // find the first stage from the tournament, where the first group hast
-        // no member. Refers this stage has no me   mbers currently
-        const stagesCount = tournamentData.length
-        const stage = tournamentData[ stagesCount - 1 ];
-        const newStage = [];
+    // find the first stage from the tournament, where the first group hast
+    // no member. Refers this stage has no me   mbers currently
+    const stagesCount = tournamentData.length
+    const stage = tournamentData[ stagesCount - 1 ];
+    const newStage = [];
 
-        // loop through the previous stage to assign the first and second placed winner
-        // cross for the next stage for the second stage
-        if( stagesCount === 1 ){
-            for( let j = 0, k = stage.length; j < k; j++){
+    // loop through the previous stage to assign the first and second placed winner
+    // cross for the next stage for the second stage
+    if( stagesCount === 1 ){
+        for( let j = 0, k = stage.length; j < k; j++){
 
-                const group = [...stage[j]];
-                const oppositeGroup = [...stage[ k - j - 1]]
+            const group = [...stage[j]];
+            const oppositeGroup = [...stage[ k - j - 1]]
 
-                // create the first stage cross assignment
-                const candidate1 = {...group.sort(( a,b ) => b.score - a.score )[0]};
-                const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score)[1]}
-                
-                candidate1.score = 0;
-                candidate2.score = 0;
+            // create the first stage cross assignment
+            const candidate1 = {...group.sort(( a,b ) => b.score - a.score )[0]};
+            const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score)[1]}
+            
+            candidate1.score = 0;
+            candidate2.score = 0;
 
-                newStage.push([
-                    candidate1,
-                    candidate2
-                ]) 
-            }
-
-            tournamentData.push(newStage);
-            return tournamentData;
-        } 
-
-        if( stage.length % 2 === 0){
-            // assigning the remaining candidates for a even count of groups
-            for( let j = 0, k = stage.length; j < k/2; j++){
-                const group = [...stage[j]];
-                const oppositeGroup = [...stage[ k - j - 1]];
-
-                const candidate1 = {...group.sort(( a,b ) => b.score - a.score)[0]};  
-                const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
-        
-                candidate1.score = 0;
-                candidate2.score = 0;
-
-                newStage.push([
-                    candidate1,
-                    candidate2
-                ]) 
-            };
-
-            tournamentData.push(newStage);
-            return tournamentData;
+            newStage.push([
+                candidate1,
+                candidate2
+            ]) 
         }
 
-        // assigning the remaining candidates if the count of group is odd
-        for( let j = 0, k = stage.length; j <= (k-1)/2; j++){   
+        tournamentData.push(newStage);
+        return tournamentData;
+    } 
+
+    if( stage.length % 2 === 0){
+        // assigning the remaining candidates for a even count of groups
+        for( let j = 0, k = stage.length; j < k/2; j++){
             const group = [...stage[j]];
             const oppositeGroup = [...stage[ k - j - 1]];
 
-            if( j === (k-1)/2 ){
-                newStage.push(group);
-                continue
-            }
-            const candidate1 = {...group.sort(( a,b ) =>  b.score - a.score )[0]};  
+            const candidate1 = {...group.sort(( a,b ) => b.score - a.score)[0]};  
             const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
-
+    
             candidate1.score = 0;
             candidate2.score = 0;
 
@@ -117,6 +92,30 @@ export const assignNewStage = ( tournamentData ) => {
 
         tournamentData.push(newStage);
         return tournamentData;
-    
+    }
+
+    // assigning the remaining candidates if the count of group is odd
+    for( let j = 0, k = stage.length; j <= (k-1)/2; j++){   
+        const group = [...stage[j]];
+        const oppositeGroup = [...stage[ k - j - 1]];
+
+        if( j === (k-1)/2 ){
+            newStage.push(group);
+            continue
+        }
+        const candidate1 = {...group.sort(( a,b ) =>  b.score - a.score )[0]};  
+        const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
+
+        candidate1.score = 0;
+        candidate2.score = 0;
+
+        newStage.push([
+            candidate1,
+            candidate2
+        ]) 
+    };
+
+    tournamentData.push(newStage);
+    return tournamentData;
 }
 

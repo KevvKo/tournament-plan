@@ -16,8 +16,12 @@ const GroupCard = (props) => {
         const value = parseInt(e.target.value);
         
         if(plan[stageIndex][groupIndex]){
-            plan[stageIndex][groupIndex][participantIndex].score = value;
-            setPlan(...[plan]);
+
+            const update = [...plan]
+            update[ stageIndex ][ groupIndex ][ participantIndex ].score = value;
+            update[ stageIndex ][ groupIndex ].sort(( a,b ) => b.score - a.score )
+
+            setPlan(update);
         }     
     };
 

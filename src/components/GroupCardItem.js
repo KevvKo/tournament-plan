@@ -6,9 +6,14 @@ import { TextField } from '@mui/material';
 
 const GroupCardItem = (props) => {
     const { participant, stageIndex, groupIndex, participantIndex, onChange } = props;
-
+    
     return (
         <Grid item sx={{display: 'flex', alignItems: 'center' }}>
+            <Typography align='left' component='span' variant="body2" sx={{marginRight: '10px'}}>
+                <b>
+                    { participantIndex + 1 + '.' }
+                </b>
+            </Typography>
             <Typography align='left' component='span' variant="body2" sx={{marginRight: '15px'}}>
                 {participant.name}
             </Typography>
