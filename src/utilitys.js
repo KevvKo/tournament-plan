@@ -21,14 +21,14 @@ export const createGroups = ( participants ) => {
     if( restParticipantCount === 3) {
         groupStage.push([])
     }
-
+    console.log(restParticipantCount )
     participants.forEach( participant => {
 
         while(true){
             const randomGroupIndex = Math.floor(Math.random() * (groupStage.length));
 
             // assigning 3 remaining participants to the last group
-            if(restParticipantCount === 3) {
+            if(restParticipantCount === 3 || restParticipantCount === 0) {
                 if( groupStage[ randomGroupIndex ].length < 4 ){
                     groupStage[ randomGroupIndex ].push({
                         name: participant, 
@@ -39,7 +39,7 @@ export const createGroups = ( participants ) => {
             };
 
             // remaining participants one ore two 2, increasing the size for groups by one
-            if(restParticipantCount < 3 ) {
+            if(restParticipantCount < 3 && restParticipantCount !== 0) {
                 if( groupStage[ randomGroupIndex ].length < 5 ){
                     groupStage[ randomGroupIndex ].push({
                         name: participant, 
