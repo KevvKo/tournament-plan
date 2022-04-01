@@ -14,7 +14,20 @@ import ParticipantsView from './views/participants/participantsView';
 function App() {
 
   const [value, setValue] = React.useState(0);
-  const [ participants, setParticipants ] = useState([])
+  const [ participants, setParticipants ] = useState([
+    'kevin',
+    'daniel',
+    'rene',
+    'lisa',
+    'jacki',
+    'sophie',
+    'rico',
+    'robby',
+    'benny',
+    'marius',
+    'tinus',
+    'robert'
+  ])
   
   const defaultValues = {
     participants: participants,

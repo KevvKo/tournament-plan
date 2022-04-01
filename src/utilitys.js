@@ -10,21 +10,46 @@ export const createGroups = ( participants ) => {
     
     const tournamentPlan = [];
     const groupStage = []
-    let group = [];
+    const participantCount = participants.length;
+    const restParticipantCount = participantCount%4;
+
+    for(let i = 0, l = participantCount - restParticipantCount; i < l ; i+=4){
+        // 2 remaining participants, they will be assigned to the other groups
+        groupStage.push([])
+    }
+
+    if( restParticipantCount === 3) {
+        groupStage.push([])
+    }
 
     participants.forEach( participant => {
-        group.push({
-            name: participant, 
-            score: 0
-        });
 
-        if( group.length === 4 ){
-            groupStage.push(group)
-            group = [];
+        while(true){
+            const randomGroupIndex = Math.floor(Math.random() * (groupStage.length));
+
+            // assigning 3 remaining participants to the last group
+            if(restParticipantCount === 3) {
+                if( groupStage[ randomGroupIndex ].length < 4 ){
+                    groupStage[ randomGroupIndex ].push({
+                        name: participant, 
+                        score: 0
+                    });
+                    break
+                }
+            };
+
+            // remaining participants one ore two 2, increasing the size for groups by one
+            if(restParticipantCount < 3 ) {
+                if( groupStage[ randomGroupIndex ].length < 5 ){
+                    groupStage[ randomGroupIndex ].push({
+                        name: participant, 
+                        score: 0
+                    });
+                    break
+                }
+            }
         }
     });
-
-    if(group.length > 0) groupStage.push(group);
 
     // push the first groupstage
     tournamentPlan.push(groupStage);
