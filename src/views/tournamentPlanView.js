@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 // Components
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
@@ -20,31 +20,31 @@ const TournamentPlanView = () => {
         setPlanCreated } = useContext(ParticipantContext);
 
     const handleClickNew = () => {
-        const update = assignNewStage([...tournamentPlan])
+        const update = assignNewStage([...tournamentPlan]);
         setTournamentPlan([...update]);
     };
 
     const handleClickReset = () => {
-        setTournamentPlan([])
+        setTournamentPlan([]);
     };
 
     useEffect(() => {
         if(planCreated && tournamentPlan.length === 0){
-            const assignment = createGroups(participants)
-            setTournamentPlan( assignment )
-        };
+            const assignment = createGroups(participants);
+            setTournamentPlan( assignment );
+        }
 
     }, [planCreated, participants, setTournamentPlan, tournamentPlan]);
 
-    useEffect(() => {
+    useEffect(() =>{
         
         if( planCreated && tournamentPlan.length === 0){
-            const assignment = createGroups(participants)
-            setTournamentPlan( assignment )
+            const assignment = createGroups(participants);
+            setTournamentPlan( assignment );
         }
-    }, [participants, tournamentPlan, planCreated])
+    }, [participants, tournamentPlan, planCreated]);
 
-    if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />
+    if( !planCreated ) return <CreatePlan onClick={ setPlanCreated } />;
 
     const stages = tournamentPlan.map(( stage, i) => {
 
@@ -64,9 +64,9 @@ const TournamentPlanView = () => {
                             }}
                         />
                     </Grid>
-                )}
+                )};
 
-            return
+            return;
         });
 
          return (
@@ -78,8 +78,8 @@ const TournamentPlanView = () => {
                     }
                 { groupList }
             </Grid>
-        )
-    })
+        );
+    });
 
     return (
         <Box>
@@ -100,8 +100,8 @@ const TournamentPlanView = () => {
                     </Grid>
             </Grid>
         </Box>
-    )
-    
-}
+    );
+  
+};
 
 export default TournamentPlanView;

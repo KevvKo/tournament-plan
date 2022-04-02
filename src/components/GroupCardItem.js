@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // Components
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -28,7 +28,7 @@ const GroupCardItem = (props) => {
                 sx={{ width: '70px', marginLeft: 'auto'}}
             />
         </Grid>
-    )
-}
+    );
+};
 
 export default GroupCardItem;

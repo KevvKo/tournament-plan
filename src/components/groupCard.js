@@ -17,10 +17,10 @@ const GroupCard = (props) => {
         
         if(plan[stageIndex][groupIndex]){
 
-            const update = [...plan]
+            const update = [...plan];
             update[ stageIndex ][ groupIndex ][ participantIndex ].score = value;
-            update[ stageIndex ][ groupIndex ].sort(( a,b ) => b.score - a.score )
-            console.log(update)
+            update[ stageIndex ][ groupIndex ].sort(( a,b ) => b.score - a.score );
+            console.log(update);
             setPlan(update);
         }     
     };
@@ -34,8 +34,8 @@ const GroupCard = (props) => {
                 groupIndex={ groupIndex }
                 participantIndex={ i }
             />
-        )
-    })
+        );
+    });
 
     return(
         <Card className='group-card' variant="outlined" sx={{ marginBottom: '20px'}}>
@@ -51,8 +51,8 @@ const GroupCard = (props) => {
                 </Box>
             </CardContent>
         </Card>
-    )
-}
+    );
+};
 
 
 export default GroupCard;

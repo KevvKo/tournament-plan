@@ -10,12 +10,11 @@ import ParticiantItem from "../components/ParticipantItem";
 import SnackbarAction from "../components/SnackbarAction";
 import { Typography } from "@mui/material";
 import Badge from '@mui/material/Badge';
-import { positions } from "@mui/system";
 
 const ParticipantsView = () => {
 
     const { participants, setParticipants } = useContext(ParticipantContext);
-    const [ removedParticipant, setRemovedParticipant ] = useState('')
+    const [ removedParticipant, setRemovedParticipant ] = useState('');
     const [ prename, setPrename ] = useState('');
     const [ subname, setSubname ] = useState('');
     const [ open, setOpen ] = useState(false);
@@ -23,18 +22,18 @@ const ParticipantsView = () => {
     const handleClickAddParticipant = () => {
 
         if(participants.length === 80){
-            return
+            return;
         }
 
         if(prename && subname ){
             setParticipants([
                 ...participants,
                 prename + ' ' + subname
-            ])
+            ]);
             setPrename('');
             setSubname('');
         }
-    }   
+    };
 
     const handleUndo = () => {
         participants.splice( 
@@ -44,7 +43,7 @@ const ParticipantsView = () => {
         );
 
         setParticipants(participants);
-    }
+    };
 
     const handleChangePrename = (e) => {
         if( e.target.value ){
@@ -143,7 +142,7 @@ const ParticipantsView = () => {
                 </Typography>
             </Badge>
         </Box>
-    )
-}
+    );
+};
 
 export default ParticipantsView;

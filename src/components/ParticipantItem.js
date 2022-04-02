@@ -12,14 +12,14 @@ const ParticiantItem = (props) => {
  
     const handleClick = (i) => {
                                 
-        const update = participants.filter(( e, j) =>  i !== j )
+        const update = participants.filter(( e, j) =>  i !== j );
         setRemovedParticipant({
             name: participants[i],
             index: i
-        })
+        });
         setParticipants(update);
         setOpen(true);
-    }
+    };
 
     return (
         <Grid item key={id} sx={{ display: 'flex'}} alignItems='center'>
@@ -28,13 +28,13 @@ const ParticiantItem = (props) => {
             </Typography>
             <Button 
                 variant='contained' 
-                onClick={ () => { handleClick(id) }}
+                onClick={ () => { handleClick(id); }}
                 sx={{marginLeft: 'auto'}}
             >
                 Entfernen
             </Button>
         </Grid>
-    )
-}
+    );
+};
 
 export default ParticiantItem;

@@ -14,7 +14,7 @@ function App() {
 
   const [value, setValue] = React.useState(0);
   const [ tournamentPlan, setTournamentPlan ] = useState([]);
-  const [ participants, setParticipants ] = useState([])
+  const [ participants, setParticipants ] = useState([]);
   const [ planCreated, setPlanCreated ] = useState(false);
   
   const defaultValues = {
@@ -24,7 +24,7 @@ function App() {
     setParticipants: setParticipants,
     setPlanCreated: setPlanCreated,
     setTournamentPlan: setTournamentPlan
-  }
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

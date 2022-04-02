@@ -10,13 +10,13 @@ const SnackbarAction = (props) => {
 
 
     const handleClose = () => {
-        setOpen(false)
-    }
+        setOpen(false);
+    };
 
     const handleUndo = () => {
-      callback()
-      setOpen(false)
-    }
+      callback();
+      setOpen(false);
+    };
 
     return (
         <React.Fragment>
@@ -33,6 +33,6 @@ const SnackbarAction = (props) => {
           </IconButton>
         </React.Fragment>
       );
-}
+};
 
 export default SnackbarAction;

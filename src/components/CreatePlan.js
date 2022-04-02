@@ -21,7 +21,7 @@ const CreatePlan = (props) => {
                 <Button onClick={ handleClick }>Turnierplan erstellen</Button>
             }
         </Box>
-    )
-}
+    );
+};
 
 export default CreatePlan;
