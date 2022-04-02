@@ -20,7 +20,7 @@ const GroupCard = (props) => {
             const update = [...plan]
             update[ stageIndex ][ groupIndex ][ participantIndex ].score = value;
             update[ stageIndex ][ groupIndex ].sort(( a,b ) => b.score - a.score )
-
+            console.log(update)
             setPlan(update);
         }     
     };
