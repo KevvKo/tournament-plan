@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
-import './participantsView';
-import ParticipantContext from "../../context/ParticipantContext";
+import ParticipantContext from "../context/ParticipantContext";
 // Components
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import ParticiantItem from "../../components/ParticipantItem";
-import SnackbarAction from "../../components/SnackbarAction";
+import ParticiantItem from "../components/ParticipantItem";
+import SnackbarAction from "../components/SnackbarAction";
 import { Typography } from "@mui/material";
 import Badge from '@mui/material/Badge';
 import { positions } from "@mui/system";

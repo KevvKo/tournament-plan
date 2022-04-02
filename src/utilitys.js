@@ -21,7 +21,7 @@ export const createGroups = ( participants ) => {
     if( restParticipantCount === 3) {
         groupStage.push([])
     }
-    console.log(restParticipantCount )
+
     participants.forEach( participant => {
 
         while(true){

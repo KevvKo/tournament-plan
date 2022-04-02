@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ParticipantContext from './context/ParticipantContext';
@@ -8,30 +7,23 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import TournamentPlanView from './views/tournamentPlan/tournamentPlanView';
-import ParticipantsView from './views/participants/participantsView';
+import TournamentPlanView from './views/tournamentPlanView';
+import ParticipantsView from './views/participantsView';
 
 function App() {
 
   const [value, setValue] = React.useState(0);
-  const [ participants, setParticipants ] = useState([
-    'kevin',
-    'daniel',
-    'rene',
-    'lisa',
-    'jacki',
-    'sophie',
-    'rico',
-    'robby',
-    'benny',
-    'marius',
-    'tinus',
-    'robert'
-  ])
+  const [ tournamentPlan, setTournamentPlan ] = useState([]);
+  const [ participants, setParticipants ] = useState([])
+  const [ planCreated, setPlanCreated ] = useState(false);
   
   const defaultValues = {
     participants: participants,
-    setParticipants: setParticipants
+    planCreated: planCreated,
+    tournamentPlan: tournamentPlan,
+    setParticipants: setParticipants,
+    setPlanCreated: setPlanCreated,
+    setTournamentPlan: setTournamentPlan
   }
 
   const handleChange = (event, newValue) => {

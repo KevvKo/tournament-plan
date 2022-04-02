@@ -1,22 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
-import './tournamentPlanView.css';
 // Components
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
-import GroupCard from "../../components/groupCard";
-import ParticipantContext from "../../context/ParticipantContext";
+import GroupCard from "../components/groupCard";
+import ParticipantContext from "../context/ParticipantContext";
 import { Grid } from "@mui/material";
-import CreatePlan from "../../components/CreatePlan";
+import CreatePlan from "../components/CreatePlan";
 import Typography from '@mui/material/Typography';
 // General
-import { createGroups, assignNewStage } from "../../utilitys";
+import { createGroups, assignNewStage } from "../utilitys";
 
 const TournamentPlanView = () => {
     
-    const { participants } = useContext(ParticipantContext);
-    const [ planCreated, setPlanCreated ] = useState(false);
-    const [ tournamentPlan, setTournamentPlan ] = useState([]);
-    
+    const { 
+        participants, 
+        planCreated, 
+        tournamentPlan,
+        setTournamentPlan,
+        setPlanCreated } = useContext(ParticipantContext);
+
     const handleClickNew = () => {
         const update = assignNewStage([...tournamentPlan])
         setTournamentPlan([...update]);
@@ -27,12 +29,12 @@ const TournamentPlanView = () => {
     };
 
     useEffect(() => {
-        if(planCreated){
+        if(planCreated && tournamentPlan.length === 0){
             const assignment = createGroups(participants)
             setTournamentPlan( assignment )
         };
 
-    }, [planCreated, participants]);
+    }, [planCreated, participants, setTournamentPlan, tournamentPlan]);
 
     useEffect(() => {
         
