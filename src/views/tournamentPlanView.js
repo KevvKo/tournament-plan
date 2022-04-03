@@ -64,14 +64,14 @@ const TournamentPlanView = () => {
                             }}
                         />
                     </Grid>
-                )};
+                );}
 
             return;
         });
 
-         return (
-            <Grid item sx={{marginRight: '100px'}}>
-                    { stage[0]?.length > 0 &&
+        return (
+            <Grid key={i} item sx={{marginRight: '100px'}}>
+                { stage[0]?.length > 0 &&
                         <Typography variant='h5'>
                             Phase {i + 1}
                         </Typography>

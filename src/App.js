@@ -75,6 +75,13 @@ function TabPanel(props) {
   );
 }
 
+TabPanel.propTypes = {
+  children: PropTypes.node.isRequired, 
+  value: PropTypes.number,
+  index: PropTypes.number,
+  other: PropTypes.any
+};
+
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,

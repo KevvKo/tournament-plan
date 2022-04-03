@@ -9,21 +9,21 @@
 export const createGroups = ( participants ) => {
     
     const tournamentPlan = [];
-    const groupStage = []
+    const groupStage = [];
     const participantCount = participants.length;
     const restParticipantCount = participantCount%4;
 
     for(let i = 0, l = participantCount - restParticipantCount; i < l ; i+=4){
         // 2 remaining participants, they will be assigned to the other groups
-        groupStage.push([])
+        groupStage.push([]);
     }
 
     if( restParticipantCount === 3) {
-        groupStage.push([])
+        groupStage.push([]);
     }
 
     participants.forEach( participant => {
-
+        
         while(true){
             const randomGroupIndex = Math.floor(Math.random() * (groupStage.length));
 
@@ -34,9 +34,9 @@ export const createGroups = ( participants ) => {
                         name: participant, 
                         score: 0
                     });
-                    break
+                    break;
                 }
-            };
+            }
 
             // remaining participants one ore two 2, increasing the size for groups by one
             if(restParticipantCount < 3 && restParticipantCount !== 0) {
@@ -45,7 +45,7 @@ export const createGroups = ( participants ) => {
                         name: participant, 
                         score: 0
                     });
-                    break
+                    break;
                 }
             }
         }
@@ -55,7 +55,7 @@ export const createGroups = ( participants ) => {
     tournamentPlan.push(groupStage);
 
     return tournamentPlan;
-}
+};
 
 /**
  * @summary reveices a data structure, presenting the tournament, and
@@ -68,7 +68,7 @@ export const assignNewStage = ( tournamentData ) => {
 
     // find the first stage from the tournament, where the first group hast
     // no member. Refers this stage has no me   mbers currently
-    const stagesCount = tournamentData.length
+    const stagesCount = tournamentData.length;
     const stage = tournamentData[ stagesCount - 1 ];
     const newStage = [];
 
@@ -78,11 +78,11 @@ export const assignNewStage = ( tournamentData ) => {
         for( let j = 0, k = stage.length; j < k; j++){
 
             const group = [...stage[j]];
-            const oppositeGroup = [...stage[ k - j - 1]]
+            const oppositeGroup = [...stage[ k - j - 1]];
 
             // create the first stage cross assignment
             const candidate1 = {...group.sort(( a,b ) => b.score - a.score )[0]};
-            const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score)[1]}
+            const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score)[1]};
             
             candidate1.score = 0;
             candidate2.score = 0;
@@ -90,7 +90,7 @@ export const assignNewStage = ( tournamentData ) => {
             newStage.push([
                 candidate1,
                 candidate2
-            ]) 
+            ]);
         }
 
         tournamentData.push(newStage);
@@ -112,8 +112,8 @@ export const assignNewStage = ( tournamentData ) => {
             newStage.push([
                 candidate1,
                 candidate2
-            ]) 
-        };
+            ]);
+        }
 
         tournamentData.push(newStage);
         return tournamentData;
@@ -126,7 +126,7 @@ export const assignNewStage = ( tournamentData ) => {
 
         if( j === (k-1)/2 ){
             newStage.push(group);
-            continue
+            continue;
         }
         const candidate1 = {...group.sort(( a,b ) =>  b.score - a.score )[0]};  
         const candidate2 = {...oppositeGroup.sort(( a,b ) => b.score - a.score )[0]};
@@ -137,10 +137,10 @@ export const assignNewStage = ( tournamentData ) => {
         newStage.push([
             candidate1,
             candidate2
-        ]) 
-    };
+        ]);
+    }
 
     tournamentData.push(newStage);
     return tournamentData;
-}
+};
 

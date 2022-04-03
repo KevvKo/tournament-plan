@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 // Components
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -33,6 +34,11 @@ const SnackbarAction = (props) => {
           </IconButton>
         </React.Fragment>
       );
+};
+
+SnackbarAction.propTypes = {
+  callback: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired
 };
 
 export default SnackbarAction;

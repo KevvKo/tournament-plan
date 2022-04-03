@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from 'prop-types';
 // Componrnts
 import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
@@ -8,7 +9,7 @@ import Grid from '@mui/material/Grid';
 const ParticiantItem = (props) => {
     
     const { participant, id, setOpen, setRemovedParticipant } = props;
-    const {  participants, setParticipants } = useContext(ParticipantContext);
+    const { participants, setParticipants } = useContext(ParticipantContext);
  
     const handleClick = (i) => {
                                 
@@ -35,6 +36,13 @@ const ParticiantItem = (props) => {
             </Button>
         </Grid>
     );
+};
+
+ParticiantItem.propTypes = {
+    participant: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
+    setOpen: PropTypes.func.isRequired,
+    setRemovedParticipant: PropTypes.func.isRequired
 };
 
 export default ParticiantItem;

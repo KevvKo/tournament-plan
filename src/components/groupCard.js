@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import { Box } from '@mui/system';
 import Card from '@mui/material/Card';
@@ -8,7 +9,7 @@ import GroupCardItem from './GroupCardItem';
 
 const GroupCard = (props) => {
 
-    const { group, stageIndex, groupIndex, tournamentData} = props
+    const { group, stageIndex, groupIndex, tournamentData} = props;
     const {plan, setPlan } = tournamentData;
 
     const handleChange = (e, stageIndex, groupIndex, participantIndex ) => {   
@@ -29,7 +30,8 @@ const GroupCard = (props) => {
         return (
             <GroupCardItem 
                 participant={ participant }
-                onChange={ handleChange}
+                key={ i }
+                onChange={handleChange}
                 stageIndex={ stageIndex }
                 groupIndex={ groupIndex }
                 participantIndex={ i }
@@ -54,5 +56,11 @@ const GroupCard = (props) => {
     );
 };
 
+GroupCard.propTypes = {
+    group: PropTypes.array.isRequired,
+    stageIndex: PropTypes.number.isRequired,
+    groupIndex: PropTypes.number.isRequired,
+    tournamentData: PropTypes.array.isRequired,
+};
 
 export default GroupCard;

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from 'prop-types';
 // Components
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -11,7 +12,8 @@ const CreatePlan = (props) => {
     const { participants } = useContext(ParticipantContext);
     const handleClick = () => [
         onClick(true)
-    ]
+    ];
+    
     return(
         <Box component='div'>
             <Typography>
@@ -22,6 +24,10 @@ const CreatePlan = (props) => {
             }
         </Box>
     );
+};
+
+CreatePlan.propTypes = {
+    onClick: PropTypes.func.isRequired
 };
 
 export default CreatePlan;

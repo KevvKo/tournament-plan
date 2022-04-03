@@ -13,7 +13,7 @@ import Badge from '@mui/material/Badge';
 
 const ParticipantsView = () => {
 
-    const { participants, setParticipants } = useContext(ParticipantContext);
+    const {participants, setParticipants } = useContext(ParticipantContext);
     const [ removedParticipant, setRemovedParticipant ] = useState('');
     const [ prename, setPrename ] = useState('');
     const [ subname, setSubname ] = useState('');
@@ -82,9 +82,10 @@ const ParticipantsView = () => {
                                     return <ParticiantItem 
                                                 participant={ e } 
                                                 id={ i } 
+                                                key={ i }
                                                 setOpen={setOpen} 
                                                 setRemovedParticipant={ setRemovedParticipant }
-                                            />
+                                            />;
                                 })
                             )}
                         </ParticipantContext.Consumer>

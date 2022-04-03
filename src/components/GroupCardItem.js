@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from 'prop-types';
 // Components
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 
 const GroupCardItem = (props) => {
-    const { participant, stageIndex, groupIndex, participantIndex, onChange } = props;
+    const {participant, stageIndex, groupIndex, participantIndex, onChange } = props;
 
     return (
         <Grid item sx={{display: 'flex', alignItems: 'center' }}>
@@ -23,12 +24,20 @@ const GroupCardItem = (props) => {
                 InputProps={{ inputProps: { min: 0, max: 3 } }}
                 value={participant.score} 
                 onChange={ (e) => { 
-                    onChange(e, stageIndex, groupIndex , participantIndex)
+                    onChange(e, stageIndex, groupIndex , participantIndex);
                 }}
                 sx={{ width: '70px', marginLeft: 'auto'}}
             />
         </Grid>
     );
+};
+
+GroupCardItem.propTypes = {
+    participant: PropTypes.object.isRequired,
+    stageIndex: PropTypes.number.isRequired,
+    groupIndex: PropTypes.number.isRequired,
+    participantIndex: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default GroupCardItem;
