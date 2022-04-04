@@ -107,6 +107,11 @@ const ParticipantsView = () => {
                         sx={{marginRight: '15px'}}
                         value={ subname }
                         onChange={ handleChangeSubname }    
+                        onKeyDown={ (e) => {
+                            if(e.key === 'Enter'){
+                                handleClickAddParticipant()
+                            }
+                        }}
                     />
                     <Button variant='contained' sx={{height: '40px', marginRight: '70px'}} onClick={ handleClickAddParticipant }>
                         Hinzufügen

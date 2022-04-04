@@ -1,5 +1,5 @@
 module.exports = {
-    "env": {
+    "env": {Benjamin.gypser@web.de 
         "browser": true,
         "es2021": true,
         "node": true
@@ -20,6 +20,6 @@ module.exports = {
     ],
     "rules": {
         semi: ["error", "always"]
-        
+
     }
 };

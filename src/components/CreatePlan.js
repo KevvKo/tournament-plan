@@ -19,7 +19,7 @@ const CreatePlan = (props) => {
             <Typography>
                 Aktuelle Teilnehmeranzahl: { participants.length }
             </Typography>       
-            { ( participants.length !== 0  || participants.length === undefined ) &&
+            { ( participants.length > 6 || participants.length === undefined ) &&
                 <Button onClick={ handleClick }>Turnierplan erstellen</Button>
             }
         </Box>
