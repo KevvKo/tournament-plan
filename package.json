@@ -68,15 +68,18 @@
     "files": [
       "build/**/*",
       "node_modules/**/*"
+
     ],
     "directories": {
       "buildResources": "public"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "icon": "./public/logo.png"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "./public/logo.png"
     },
     "linux": {
       "target": "deb"
