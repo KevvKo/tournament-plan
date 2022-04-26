@@ -21,7 +21,7 @@ const GroupCardItem = (props) => {
             <TextField 
                 type='number' 
                 size="small" 
-                InputProps={{ inputProps: { min: 0, max: 3 } }}
+                InputProps={{ inputProps: { min: 0, max: 5 } }}
                 value={participant.score} 
                 onChange={ (e) => { 
                     onChange(e, stageIndex, groupIndex , participantIndex);
